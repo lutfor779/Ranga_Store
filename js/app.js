@@ -89,8 +89,8 @@ const product = (id, isTrue) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => singleProductDetails(data));
-  
-    // set cart position
+
+  // set cart position
   if (isTrue) {
     document.getElementById("my-cart").style.marginTop = "-600px";
   }
@@ -138,3 +138,15 @@ function getStars(rate) {
 }
 // get random background color
 const randomColor = () => '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6) + 15;
+
+// cart button
+const confirmOrder = () => {
+  const sure = confirm('Are you want to Buy Now?');
+  if (sure) {
+    document.getElementById("total-Products").innerText = 0;
+    document.getElementById("price").innerText = 0;
+    document.getElementById("delivery-charge").innerText = 20;
+    document.getElementById("total-tax").innerText = 0;
+    document.getElementById("total").innerText = 0;
+  }
+}

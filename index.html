@@ -28,9 +28,11 @@
     <div class="search-field bg-success">
       <h2 class="text-center">Welcome to A-Z Store!!!</h2>
       <div class="search-box">
+        <!-- input area -->
         <input id="input-field" class="form-control me-2" type="search"
           placeholder="Search"
           aria-label="Search"/>
+        <!-- search button -->
         <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"
           autocomplete="off" id="search-btn" onclick="loadProducts()">
           Search
@@ -40,8 +42,9 @@
     <!-- product detail -->
     <div id="show-product">
     </div>
-    <!-- products -->
+    <!-- products and carts -->
     <div class="row">
+      <!-- all products showing -->
       <div class="col-md-9 col-lg-9 col-sm-7">
         <div id="all-products" class="">
         </div>
@@ -92,7 +95,7 @@
             </tbody>
           </table>
           <div class="parces text-center">
-            <button class="btn btn-primary text-center">Buy Now</button>
+            <button class="btn btn-primary text-center" onclick="confirmOrder()">Buy Now</button>
           </div>
         </div>
       </div>
