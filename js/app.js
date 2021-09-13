@@ -23,7 +23,7 @@ const productDetails = (products) => {
       <p>Rating: <span class="text-danger">${product.rating.rate}</span></p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <a href="#"><button id="details-btn" onclick="product(${product.id})" class="btn btn-danger">Details</button></a></div>
+      <a href="#"><button id="details-btn" onclick="product(${product.id}, true)" class="btn btn-danger">Details</button></a></div>
       `;
     document.getElementById("all-products").appendChild(div);
 
@@ -84,11 +84,19 @@ const updateTotal = () => {
 
 
 // product detail
-const product = id => {
+const product = (id, isTrue) => {
   const url = `https://fakestoreapi.com/products/${id}`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => singleProductDetails(data));
+  
+    // set cart position
+  if (isTrue) {
+    document.getElementById("my-cart").style.marginTop = "-600px";
+  }
+  else {
+    document.getElementById("my-cart").style.marginTop = 0;
+  }
 }
 const singleProductDetails = product => {
   document.getElementById("show-product").textContent = '';
@@ -110,7 +118,7 @@ const singleProductDetails = product => {
   document.getElementById("show-product").appendChild(div);
   document.getElementById("stars").innerHTML = getStars(product.rating.rate);
 }
-
+// get review with stars
 function getStars(rate) {
   // Round to nearest half
   rate = Math.round(rate);
@@ -128,5 +136,5 @@ function getStars(rate) {
     output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
   return output.join('');
 }
-
+// get random background color
 const randomColor = () => '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6) + 15;
