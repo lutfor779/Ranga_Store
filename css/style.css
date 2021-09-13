@@ -22,7 +22,7 @@ body {
 #show-product{
   text-align: center;
   margin:10px auto 25px;
-  width: 350px;
+  width: 375px;
 }
 #all-products {
   display: grid;

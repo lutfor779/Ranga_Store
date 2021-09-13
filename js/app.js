@@ -2,12 +2,12 @@ const loadProducts = () => {
   const url = `https://fakestoreapi.com/products`;
   fetch(url)
     .then((response) => response.json())
-    .then((data) => productDetailss(data));
+    .then((data) => productDetails(data));
 };
 loadProducts();
 
 // show all product in UI 
-const productDetailss = (products) => {
+const productDetails = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const image = product.image;
@@ -26,7 +26,7 @@ const productDetailss = (products) => {
       <a href="#"><button id="details-btn" onclick="product(${product.id})" class="btn btn-danger">Details</button></a></div>
       `;
     document.getElementById("all-products").appendChild(div);
-    
+
   }
 };
 let count = 0;
@@ -54,7 +54,7 @@ const updatePrice = (id, value) => {
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = value.toFixed(2);
+  document.getElementById(id).innerText = value;
 };
 
 // update delivery charge and total Tax
@@ -62,15 +62,15 @@ const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
   if (priceConverted > 200) {
     setInnerText("delivery-charge", 30);
-    setInnerText("total-tax", priceConverted * 0.2);
+    setInnerText("total-tax", (priceConverted * 0.2).toFixed(2));
   }
   if (priceConverted > 400) {
     setInnerText("delivery-charge", 50);
-    setInnerText("total-tax", priceConverted * 0.3);
+    setInnerText("total-tax", (priceConverted * 0.3).toFixed(2));
   }
   if (priceConverted > 500) {
     setInnerText("delivery-charge", 60);
-    setInnerText("total-tax", priceConverted * 0.4);
+    setInnerText("total-tax", (priceConverted * 0.4).toFixed(2));
   }
 };
 
@@ -88,13 +88,13 @@ const product = id => {
   const url = `https://fakestoreapi.com/products/${id}`;
   fetch(url)
     .then((response) => response.json())
-    .then((data) => productDetails(data));
+    .then((data) => singleProductDetails(data));
 }
-const productDetails = product => {
+const singleProductDetails = product => {
   document.getElementById("show-product").textContent = '';
   const image = product.image;
   const div = document.createElement("div");
-  // div.classList.add("product");
+  div.classList.add("product");
   div.innerHTML = `<div class="single-product">
       <div>
     <img class="product-image" src=${image}></img>
